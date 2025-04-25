@@ -1,55 +1,95 @@
-[![Archived badge](https://img.shields.io/badge/Stage-Archived-orange)](https://github.com/eiffel-community/community/blob/master/PROJECT_LIFECYCLE.md#stage-archived)
+# Eiffel-Store
 
-# eiffel-store
-A persistence solution for Eiffel events. This repository is different than Eiffel Vici. This repository accepts live view of Eiffel
-events. The MongoDB, at backend, has trigger events. Whenever any event is added into the collection named "eiffel-events", the 
-visualization is updated. 
+**Eiffel-Store** is a real-time persistence and visualization tool for Eiffel events, offering traceability across CI/CD pipelines. Unlike Eiffel-Vici, which provides batch visualization, Eiffel-Store updates its visualization live as new events are inserted into the database. It is designed to help developers trace software changes from commit to deployment and detect faults in real-time.
 
-### [Note]: All the events must be inserted in the collection named "eiffel-events" only one by one. You cannot insert more than one event at one time, due to the fact that it is a live visualization. This is also a major difference between original Eiffel Vici (https://github.com/eiffel-community/eiffel-vici) and Eiffel-store (this repository). Original Eiffel Vici takes a big JSON file full of Eiffel events as an argument and build a one-time visualization which is not a "Live Visualization". This repository takes Eiffel event one by one and build visualization gradually.  
+---
 
-### Installing
+## 🛠️ Installing
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Follow these instructions to run Eiffel-Store locally for development and testing purposes:
 
-1) Clone the repository and open the shell and go to 'Visualization' folder. 
-2) Run the following command in the 'Visualization' folder:        
+1. **Clone the repository**  
+2. Open a terminal and navigate to the `Visualization` folder.  
+3. Run the following command:
 
-```
+```bash
 meteor
-```
-It can ask to install some nmp plugins, it is fine. Read through the error messages and install the missing plugins. If everything
-went fine, you will be able to see the app running on the following link:
+    If prompted to install missing npm plugins, follow the suggestions in the terminal.
 
-```
-localhost:3000
-```
+    Access the app in your browser:
 
-3) Access the local instance of "mongo db" mostly running on 3001 port. The name of DB is "meteor". 
-You can select some GUI tool to access database. If database is empty, follow step number 4. 
-4) Create the following four collections (case-sensitive):
+http://localhost:3000
 
-```
-eiffel-events
-eventfilter
-events
-eventsequences
-tablerows
-```
+    Open the MongoDB instance (usually on port 3001) and access the meteor database.
 
-### The app (localhost:3000) is ready to use, but nothing will appear on screen as there are no events in db. You have two options:
+    Create the following collections (case-sensitive):
 
-1) Publish your events from CI to RabbitMQ Bus and connect RabbitMQ bus with Eiffel-store through MongoDB. Check the section "Connection to RabbitMQ Server" below.
-2) Copy-paste dummy events (one by one) from JSON file provided in this repository with the named "eiffelevents.json" to mongo db collection name "eiffel-events" in "meteor" database (Check Point Number 3 Above).
+    eiffel-events
 
+    eventfilter
 
-## Getting Started
+    events
 
-The Eiffel-store visualization is live. Insert Eiffel event into the collection named "eiffel-events" and refresh the webpage 
-(localhost:3000) and you will see visualization. Keep inserting the events and visualization will keep linking events.
+    eventsequences
 
-### Connection to RabbitMQ Server
+    tablerows
 
-Your CI (e.g., Jenkins or Gerrit) can publish Eiffel events on your RabbitMQ Bus and you can connect RabbitMQ Bus with Eiffel-store by using the a small java code, written by me, on https://github.com/azeem59/rabbitmq-eiffel-store. This is a bridge between RabbitMQ Bus and Eiffel-store. By running this code, you can just publish events on RabbitMQ Bus and it will automatically appear in the Eiffel-store app.
-This code may have some errors. Please feel free to update the code or write your own bridge between RabbitMQ Bus and Eiffel-store
+🚀 Getting Started
 
+After setup:
 
+    Add Eiffel events one by one to the eiffel-events collection in the meteor database.
+
+    Refresh localhost:3000 to see the live visualization update.
+
+📝 Note:
+
+Eiffel-Store does not support bulk inserts. Insert one event at a time to maintain live visualization integrity.
+🔄 RabbitMQ Integration
+
+Your CI tools (e.g., Jenkins, Gerrit) can publish Eiffel events to a RabbitMQ message bus.
+
+To bridge RabbitMQ and Eiffel-Store:
+
+👉 Use this Java utility: rabbitmq-eiffel-store
+
+This tool listens to RabbitMQ and pushes events to MongoDB, making them instantly visible in Eiffel-Store.
+📷 Architecture Overview
+
+The diagram below illustrates the architecture of Eiffel-Store and its relationship with Git, Jenkins, Jira, RabbitMQ, and MongoDB:
+
+🔎 Explanation:
+
+    Git, Jenkins, and Jira generate Eiffel events.
+
+    These events are sent to RabbitMQ (message queue).
+
+    The Eiffel-Store service listens to the RabbitMQ stream or direct DB insertions.
+
+    Events are stored in MongoDB and visualized as a directed graph using Meteor.js.
+
+    This enables real-time traceability from code commits to downstream artifacts and failures.
+
+    Plugins are used to auto-generate Eiffel data from tools like Jenkins or Git.
+
+🧠 Research and Industrial Use
+
+Eiffel-Store has been used in multiple empirical software engineering studies and in industrial settings to:
+
+    Analyze CI/CD processes.
+
+    Improve fault localization.
+
+    Support real-time compliance and traceability.
+
+More details can be found in our Software Impacts journal submission.
+📚 Related Projects
+
+    Eiffel-Vici (batch-based)
+
+    RabbitMQ Eiffel Publisher
+
+📧 Support
+
+For issues or questions, contact:
+📩 azeem.ahmad@ericsson.com
