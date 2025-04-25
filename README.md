@@ -59,7 +59,7 @@ To bridge RabbitMQ and Eiffel-Store:
 This tool listens to RabbitMQ and pushes events to MongoDB, making them instantly visible in Eiffel-Store.
 📷 Architecture Overview
 
-The diagram below illustrates the architecture of Eiffel-Store and its relationship with Git, Jenkins, Jira, RabbitMQ, and MongoDB:
+The diagram below  ![Alt text here](visualization/tool.png) illustrates the architecture of Eiffel-Store and its relationship with Git, Jenkins, Jira, RabbitMQ, and MongoDB:
 
 
 🔎 Explanation:
