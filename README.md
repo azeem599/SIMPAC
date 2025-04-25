@@ -98,7 +98,6 @@ Eiffel-Store has been used in multiple empirical software engineering studies an
 
     Support real-time compliance and traceability.
 
-More details can be found in our Software Impacts journal submission.
 📚 Related Projects
 
     Eiffel-Vici (batch-based)
