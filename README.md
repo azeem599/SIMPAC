@@ -76,6 +76,18 @@ The diagram below  ![Alt text here](visualization/tool.png) illustrates the arch
 
     Plugins are used to auto-generate Eiffel data from tools like Jenkins or Git.
 
+🧠 Tool Output
+
+Figure ![Alt text here](visualization/grid.png) demonstrates how the live visualization evolves as Eiffel events are progressively inserted into the system. 
+
+    Visualization 1 depicts the initial empty state with only timeline controls visible. As no events are yet received, no graphical representation is shown.
+
+    Visualization 2 displays the first recognized event, an EiffelEnvironmentDefinedEvent (EDef), which initializes the environment setup. This is the base upon which all subsequent events link.
+
+    Visualization 3 adds a SourceChangeSubmittedEvent (SCS), indicating a commit submission. This illustrates how live data begins to form a directed graph.
+
+    Visualization 4 presents a complete chain including events such as {SourceChangeCreated (SCC)}, {ArtifactCreated (ArtC)}, {ArtifactPublished (ArtP)}, and {ActivityStarted (ActS)}. This comprehensive visualization allows users to trace from code commit to product artifact, offering end-to-end CI/CD traceability.
+
 🧠 Research and Industrial Use
 
 Eiffel-Store has been used in multiple empirical software engineering studies and in industrial settings to:
