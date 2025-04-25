@@ -13,7 +13,10 @@ Follow these instructions to run Eiffel-Store locally for development and testin
 3. Run the following command:
 
 ```bash
+
 meteor
+```
+
     If prompted to install missing npm plugins, follow the suggestions in the terminal.
 
     Access the app in your browser:
@@ -58,7 +61,6 @@ This tool listens to RabbitMQ and pushes events to MongoDB, making them instantl
 
 The diagram below illustrates the architecture of Eiffel-Store and its relationship with Git, Jenkins, Jira, RabbitMQ, and MongoDB:
 
-![Architecture Diagram](visualization/tool.png)
 
 🔎 Explanation:
 
