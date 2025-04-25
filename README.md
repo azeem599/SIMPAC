@@ -58,6 +58,8 @@ This tool listens to RabbitMQ and pushes events to MongoDB, making them instantl
 
 The diagram below illustrates the architecture of Eiffel-Store and its relationship with Git, Jenkins, Jira, RabbitMQ, and MongoDB:
 
+![Architecture Diagram](visualization/tool.png)
+
 🔎 Explanation:
 
     Git, Jenkins, and Jira generate Eiffel events.
